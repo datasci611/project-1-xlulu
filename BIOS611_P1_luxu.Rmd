@@ -1,0 +1,81 @@
+---
+title: "BIOS611 P1"
+author: "Lu Xu"
+date: "9/24/2018"
+output: html_document
+---
+
+```{r warning=FALSE}
+library(tidyverse)
+```
+
+## USArrests
+
+```{r}
+ggplot(data = USArrests, mapping = aes(x=Murder, y=Assault)) + 
+  geom_point() +
+  xlab('Murder Rate') +
+  ylab('Assault Rate') 
+
+murder_low = filter(USArrests, Murder < 4.0)
+murder_low$Murder
+```
+
+This figure was derived from the “USArrests” data set in R, which is derived from “World Almanac and Book of facts 1975. (Crime rates)”. This data set contains statistics, in arrests per 100,000 residents for assault, murder, and rape in each of the 50 US states in 1973. Also given is the percent of the population living in urban areas.
+
+As a next step, it would be interesting to look at the relationship between murder and assault rate, but actually simulate a linear regression model for each two of the variables, and see how the relationship between them.
+
+## PlantGrowth
+
+```{r}
+data("PlantGrowth")
+summary(PlantGrowth)
+tp2 = as.tibble(PlantGrowth)
+tp2$names = names(PlantGrowth)
+
+ggplot(data = tp2, mapping = aes(x=group, y=weight)) + 
+  geom_boxplot()
+
+ctr1_low = filter(PlantGrowth, weight < 4.00)
+ctr1_low
+```
+
+This figure was derived from the “PlantGrowthp” data set in R, which is derived from “Dobson, A. J. (1983) An Introduction to Statistical Modelling. London: Chapman and Hall.”. It results from an experiment to compare yields (as measured by dried weight of plants) obtained under a control and two different treatment conditions. The mean weight of three group is 5.073. The minimum weight is 3.590 and maxium weight is 6.310.
+
+As a next step, it would be interesting to look at more than just the average of three groups, but actually see the distribution for each group, and compare the difference of them.
+
+## ToothGrowth
+
+```{r}
+data("ToothGrowth")
+tp3 = as.tibble(ToothGrowth)
+tp3$names = names(ToothGrowth)
+
+ggplot(data = tp3, mapping = aes(x=supp, y=len)) + 
+  geom_boxplot()
+
+len_low = filter(ToothGrowth, len < 5.00)
+len_low
+```
+
+This figure was derived from the “precip” data set in R, which is derived from “C. I. Bliss (1952). The Statistics of Bioassay. Academic Press”. It is a A data frame with 60 observations on 3 variables.The response is the length of odontoblasts (cells responsible for tooth growth) in 60 guinea pigs. Each animal received one of three dose levels of vitamin C (0.5, 1, and 2 mg/day) by one of two delivery methods, orange juice or ascorbic acid (a form of vitamin C and coded as VC). The average precipitation (reported in inches) is 34.89 inches. The mean of the length is 18.81, the minimum of the lenth is 4.2 and the maxmium of the length is 33.9.
+
+As a next step, it would be interesting to look at more than just the average rainfall, but actually see the distribution for each city, and see how the rainfall of recent years compares to the historical distribution.
+
+## iris
+
+```{r}
+data("iris")
+tp4 = as.tibble(iris)
+tp4$names = names(iris)
+
+ggplot(data = tp4) + 
+  geom_point(mapping = aes(x=Sepal.Length, y=Sepal.Width, color=Species))
+
+Sepal_low = filter(iris, Sepal.Length < 4.5)
+Sepal_low
+```
+
+This figure was derived from the “iris” data set in R, which is The data were collected by Anderson, Edgar (1935). The irises of the Gaspe Peninsula, Bulletin of the American Iris Society, 59, 2–5. It  gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica. 
+
+As a next step, it would be interesting to look at Sepal and Patel length and width, find the relation between them.
